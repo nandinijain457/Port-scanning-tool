@@ -1,4 +1,4 @@
-from _future_ import annotations
+from __future__ import annotations
 import argparse
 import json
 import re
@@ -223,5 +223,5 @@ def main():
     result = gather_minimal(target, ports, threads=args.threads, timeout=args.timeout, save_json=args.output)
     print_minimal(result)
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     main()
