@@ -79,7 +79,7 @@ def check_port(ip: str, port: int, timeout: float=1.5) -> Dict:
                 resp = requests.get(url, timeout=3, verify=False, headers={'User-Agent': 'web_recon_minimal/1.0'})
                 result['http_status'] = resp.status_code
                 # extract <title>
-                m = re.search(r'<title[^>]>(.?)</title>', resp.text, flags=re.I|re.S)
+                m = re.search(r'<title[^>]*>(.*?)</title>', resp.text, flags=re.I|re.S)
                 if m:
                     title = m.group(1).strip()
                     result['http_title'] = re.sub(r'\s+', ' ', title)[:200]
@@ -223,5 +223,5 @@ def main():
     result = gather_minimal(target, ports, threads=args.threads, timeout=args.timeout, save_json=args.output)
     print_minimal(result)
 
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()
